@@ -5,7 +5,15 @@ import './Appoitment.css'
 
 const AppointmentView = (observer(({ appointment }) => {
 
-    
+    function funDay(date) {
+        const myDate = new Date(date);
+        return new Date(
+            myDate.getFullYear(),
+            myDate.getMonth(),
+            myDate.getDate() -1,
+        );
+    }
+        
 function funWeek(date) {
     const myDate = new Date(date);
     return new Date(
@@ -16,7 +24,7 @@ function funWeek(date) {
 }
    
     return (
-            <div className={new Date(appointment.dateTime) - 24 <= new Date() ? "red" : funWeek(appointment.dateTime) <= new Date() ? "orange" : "green"}>          
+            <div className={ funDay(appointment.dateTime) <= new Date()? "red" : funWeek(appointment.dateTime) <= new Date() ? "orange" : "green"}>          
                 <p>id:{appointment.id}</p>
                 <p>serviceType:{appointment.serviceType}</p>
                 <p>dateTime:{appointment.dateTime}</p>
